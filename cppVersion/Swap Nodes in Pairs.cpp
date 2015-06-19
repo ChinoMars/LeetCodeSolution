@@ -11,6 +11,28 @@ class Solution
 	public:
 	    ListNode* swapPairs(ListNode* head) 
 	    {
-	    	    
+	    	if(!head || !head->next) return head;
+	    	
+	    	ListNode* pre = head;
+	    	ListNode* aft;
+	    	ListNode* preTmp = head;
+
+	    	do
+	    	{
+	    		aft = pre->next;
+	    		pre->next = aft->next;
+	    		aft->next = pre;
+	    		
+	    		if(pre == head)
+	    			head = aft;
+	    		else
+	    			preTmp->next = aft;
+	    		
+	    		preTmp = pre;
+	    		pre = pre->next;
+
+	    	}while(pre && pre->next);
+
+	    	return head;
 	    }
 };
