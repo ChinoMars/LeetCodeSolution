@@ -12,15 +12,35 @@ class Solution
         void connect(TreeLinkNode *root) 
         {
             if(!root) return;
+
+            TreeLinkNode* nextNode = root->next;
+            TreeLinkNode* nextWait = NULL;
+            while(nextNode)
+            {
+            	if(nextNode->left)
+            	{
+            		nextWait = nextNode->left;
+            		break;
+            	}
+            	if(nextNode->right)
+            	{
+            		nextWait = nextNode->right;
+            		break;
+            	}
+            	nextNode = nextNode->next;
+            }
+
+            if(root->right)
+            {
+            	root->right->next = nextNode;
+            }
+
             if(root->left)
             {
-            	if()
-            	root->left->next = root->right;
+            	root->left->next = root->right?root->right:nextNode;
             }
-            if(root->right) root->right->next = root->next?root->next->left:NULL;
-            
+
+  			connect(root->right);          
             connect(root->left);
-            connect(root->right);
-            
         }
 };
