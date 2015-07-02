@@ -32,12 +32,12 @@ class Solution
 
             if(root->right)
             {
-            	root->right->next = nextNode;
+            	root->right->next = nextWait;
             }
 
             if(root->left)
             {
-            	root->left->next = root->right?root->right:nextNode;
+            	root->left->next = root->right?root->right:nextWait;
             }
 
   			connect(root->right);          
